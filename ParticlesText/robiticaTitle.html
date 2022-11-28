@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding : 0;
+            box-sizing:border-box;
+        }
+        body {
+            overflow: hidden;
+            background: #00979d;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left:0; 
+
+        }
+
+
+    </style>
+</head>
+<body>
+    <canvas id="canvas1"></canvas>
+    
+</body>
+<script>
+const canvas =document.getElementById('canvas1');
+const ctx = canvas.getContext('2d');
+canvas.width=window.innerWidth;
+canvas.height=200;
+
+let particulas=[];
+
+//Ratón
+let raton = {
+    x: null,
+    y:null,
+    radio:60
+}
+window.addEventListener('mousemove', function(event){
+    raton.x = event.x;
+    raton.y = event.y;
+   // console.log(mouse.x, mouse.y);
+});
+ctx.fillStyle='white';
+ctx.font = '30px Arial';
+ctx.fillText('Robótica',0 ,30 );
+const datos = ctx.getImageData(0,0,220,50);
+
+
+class Particula {
+    constructor(x,y){
+        this.x = x;
+        this.y = y;
+        this.tam = 2;
+        this.xInicial = this.x;
+        this.yInicial = this.y;
+        this.peso= Math.random()+1;
+    }
+    dibuja(){
+        ctx.fillStyle='white';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.tam, 0, Math.PI*2);
+        ctx.closePath();
+        ctx.fill();
+    }
+    calcula() {
+        let dx = raton.x - this.x;
+        let dy = raton.y - this.y;
+        let distancia = Math.hypot(dx,dy);
+        let repulsion = (raton.radio -distancia)/raton.radio*this.peso;
+        let repulsionX = dx/distancia*repulsion;
+        let repulsionY = dy/distancia*repulsion;
+        if (distancia<raton.radio) {
+            this.x -=repulsionX;
+            this.y -=repulsionY;
+        } else {
+            if (this.x != this.xInicial){
+                let dx =this.x - this.xInicial;
+                this.x -=dx/20;
+            }
+            if (this.y != this.yInicial){
+                let dy =this.y - this.yInicial;
+                this.y -=dy/20;
+            }
+        }
+
+    }
+}
+function inicio() {
+    for (let i=0; i<datos.height; i++) {
+        for (let j=0; j<datos.width;j++){
+            if (datos.data[i*4*datos.width + j*4+3]) {
+                particulas.push(new Particula(j*6+60,i*6));
+            }
+        }
+    }
+    //console.log(particulas);
+}
+inicio();
+
+function animacion() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particulas.forEach(particula => {
+        particula.calcula();
+        particula.dibuja();
+    
+        
+    });
+    conecta();
+
+    requestAnimationFrame(animacion);
+}
+animacion();
+function conecta(){
+    //console.log( Math.hypot(particulas[0].x -particulas[1].x, particulas[0].y-particulas[1].y));
+    
+    for (let i=0; i<particulas.length;i++) {
+        for (let j=i; j<particulas.length;j++ ){
+            let dX = particulas[i].x -particulas[j].x;
+            let dY = particulas[i].y -particulas[j].y;
+            let distancia =Math.hypot(dX,dY);
+            if (distancia <12) {
+                ctx.strokeStyle= 'white';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(particulas[i].x, particulas[i].y);
+                ctx.lineTo(particulas[j].x, particulas[j].y);
+                ctx.closePath();
+                ctx.stroke();
+
+
+            }
+
+ 
+        }
+
+           
+
+    }
+}
+
+</script>
+</html>
