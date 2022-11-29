@@ -13,7 +13,7 @@
         }
         body {
             overflow: hidden;
-            background: #00979d;
+            background: #000000;
         }
         canvas {
             position: absolute;
@@ -65,7 +65,7 @@ window.onload =function () {
             this.peso= Math.random()+1;
         }
         dibuja(){
-            ctx.fillStyle='white';
+            ctx.fillStyle='green';
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.tam, 0, Math.PI*2);
             ctx.closePath();
@@ -128,7 +128,7 @@ window.onload =function () {
                 let dY = particulas[i].y -particulas[j].y;
                 let distancia =Math.hypot(dX,dY);
                 if (distancia <12) {
-                    ctx.strokeStyle= 'white';
+                    ctx.strokeStyle= 'green';
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(particulas[i].x, particulas[i].y);
