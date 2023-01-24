@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-image="./img/blueBG.jpg">
+					<h1 class="r-fit-text">
+						Primer programa
+						
+					</h1>
+					<img data-src="/img/Alogo.png" width="800" >
+
+				</section>
+			
+				
+				<section>
+					<h1>Conectar un LED</h1>
+					<h5>Vamos a usar el microcontrolador Arduino 
+						para controlar el encendido de un LED
+
+					</h5>
+					<img src="/img/led.png" alt="">
+					
+				</section>
+
+				<section>
+					<h1>Conexión</h1>
+					<img src="/img/LEDconexion.png" height="500px">
+				</section>
+				<section data-auto-animate>
+					<h1>Salidas</h1>
+					
+			
+				</section>
+				<section data-auto-animate >
+					<h1>Salidas</h1>
+				    <p data-auto-animate>
+						La placa Arduino UNO tiene disponibles 14 salidas digitales numeradas de la 0 a la 13
+					</p> 
+					<br>
+					<br>
+					<br>
+					<br>
+					<img src="/img//UNOsalidas.png" height="317px" width="900px">
+				</section>
+				<section>
+					<h1>Código</h1>
+					<pre>
+						<h3>Esta es la estructura de un "Sketch" Arduino</h3>
+						<code data-trim data-line-numbers class="hljs arduino">
+							void setup() {
+								// Sólo se ejecutará una vez
+							}
+							void loop() {
+								// Se repetirá una y otra vez
+							}
+						</code>
+					</pre>
+				</section>
+
+				<section data-transition="fade-out">
+					<pre>
+						<h1>Parpadeo de un LED</h1>
+						<h3>Primero se configura el pin deseado como salida</h3>
+						<code data-trim data-line-numbers="2" class="hljs arduino">
+							void setup() {
+								pinMode(9,OUTPUT); // Configura el pin 9 como salida
+							}
+							void loop() {
+								digitalWrite(9, HIGH); // Activa el pin 9 con 5V
+								delay(500);			   // Detiene la ejecución 500 ms
+								digitalWrite(9, LOW);  // Desactiva el pin 0  0V
+								delay(500);			   // Detiene la ejecución 500 ms
+							}
+						</code>
+					</pre>
+				</section>
+				<section data-transition="fade">
+					<pre>
+						<h1>Parpadeo de un LED</h1>
+						<h3>Esta es el comando para activar una salida</h3>
+						<code data-trim data-line-numbers="5" class="hljs arduino">
+							void setup() {
+								pinMode(9,OUTPUT); // Configura el pin 9 como salida
+							}
+							void loop() {
+								digitalWrite(9, HIGH); // Activa el pin 9 con 5V
+								delay(500);			   // Detiene la ejecución 500 ms
+								digitalWrite(9, LOW);  // Desactiva el pin 0  0V
+								delay(500);			   // Detiene la ejecución 500 ms
+							}
+						</code>
+					</pre>
+				</section>
+				<section data-transition="fade">
+					<pre>
+						<h1>Parpadeo de un LED</h1>
+						<h3>Esta es el comando para detener la ejecución</h3>
+						<code data-trim data-line-numbers="6" class="hljs arduino">
+							void setup() {
+								pinMode(9,OUTPUT); // Configura el pin 9 como salida
+							}
+							void loop() {
+								digitalWrite(9, HIGH); // Activa el pin 9 con 5V
+								delay(500);			   // Detiene la ejecución 500 ms
+								digitalWrite(9, LOW);  // Desactiva el pin 0  0V
+								delay(500);			   // Detiene la ejecución 500 ms
+							}
+						</code>
+					</pre>
+				</section>
+				<section data-transition="fade">
+					<pre>
+						<h1>Parpadeo de un LED</h1>
+						<h3>Esta es el comando para desactivar una salida</h3>
+						<code data-trim data-line-numbers="7" class="hljs arduino">
+							void setup() {
+								pinMode(9,OUTPUT); // Configura el pin 9 como salida
+							}
+							void loop() {
+								digitalWrite(9, HIGH); // Activa el pin 9 con 5V
+								delay(500);			   // Detiene la ejecución 500 ms
+								digitalWrite(9, LOW);  // Desactiva el pin 0  0V
+								delay(500);			   // Detiene la ejecución 500 ms
+							}
+						</code>
+					</pre>
+				</section>
+				<section data-transition="fade">
+					<pre>
+						<h1>Parpadeo de un LED</h1>
+						<h3>Esta es el comando para detener la ejecución</h3>
+						<code data-trim data-line-numbers="8" class="hljs arduino">
+							void setup() {
+								pinMode(9,OUTPUT); // Configura el pin 9 como salida
+							}
+							void loop() {
+								digitalWrite(9, HIGH); // Activa el pin 9 con 5V
+								delay(500);			   // Detiene la ejecución 500 ms
+								digitalWrite(9, LOW);  // Desactiva el pin 0  0V
+								delay(500);			   // Detiene la ejecución 500 ms
+							}
+						</code>
+					</pre>
+				</section>
+
+
+				<section>
+					<h4>Parpadeo de un LED. Simulador Wokwi</h4>
+					<iframe src="https://wokwi.com/projects/354721192508703745" height="700px"width="1000px" frameborder="0" data-preload></iframe>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
